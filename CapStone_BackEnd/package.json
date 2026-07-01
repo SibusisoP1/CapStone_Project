@@ -10,7 +10,9 @@
     "start": "nodemon --exec ts-node src/index.ts"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.0.1",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
@@ -18,8 +20,10 @@
   },
   "dependencies": {
     "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.3"
   }
 }
