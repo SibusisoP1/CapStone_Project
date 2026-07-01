@@ -1,0 +1,86 @@
+.Add_Hotel_Container {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+  margin-top: 1px solid #e5e7eb;
+}
+
+.hotel_left {
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel_left button {
+  width: 300px;
+  height: 44px;
+  padding: 12px 16px 12px 16px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.hotel_left .update {
+  background-color: #4153f5;
+}
+
+.hotel_left .delete {
+  background-color: #de3151;
+}
+
+.Hotel_right {
+  display: flex;
+  flex-direction: column;
+}
+.Hotel_tittle {
+  margin-bottom: 15px;
+}
+
+.Hotel_tittle span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.Hotel_tittle h4 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.line {
+  border-bottom: 1px solid #e5e7eb;
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+.Hotel_body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.Hotel_body span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.Hotel_body div {
+  display: flex;
+  gap: 5px;
+}
+
+.Hotel_footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Hotel_footer .rev {
+  display: flex;
+  gap: 5px;
+}
+
+.rev span {
+  font-size: 14px;
+  color: #374151;
+}

@@ -1,0 +1,315 @@
+/* Container must be relative so the absolute children stay inside it */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* Takes up 80% of the viewport height */
+  overflow: hidden;
+  background-color: black;
+}
+
+/* Make the image stretch to fill the container perfectly */
+.hero-image {
+  width: 100%;
+  height: 90%;
+  object-fit: cover; /* Prevents image distortion */
+  display: block;
+}
+
+/* Optional: Adds a dark tint so white text is highly readable */
+
+/* Centers the text and button perfectly in the middle of the banner */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Dynamic centering trick */
+  color: white;
+  text-align: center;
+  z-index: 10; /* Ensures content stays above the overlay */
+  width: 90%;
+  max-width: 600px;
+  background: transparent;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.hero-content p {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  background-color: transparent;
+}
+
+/* Style your CTA button */
+.hero-button {
+  background-color: white;
+  color: purple;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #e84118;
+}
+
+.cards_section h3 {
+  color: black;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 44px;
+  margin: 40px 70px 20px;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 70px 20px;
+}
+
+.card {
+  height: 400px;
+  width: 294.67px;
+  border-radius: 8px;
+}
+
+.card img {
+  width: 294.67px;
+  height: 200px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card h2 {
+  background-color: transparent;
+  margin: 10px;
+}
+
+.card span {
+  margin: 10px;
+}
+
+.card-1 {
+  background-color: #cc2d4a;
+}
+
+.card-2 {
+  background-color: #bc1a6e;
+}
+
+.card-3 {
+  background-color: #de3151;
+}
+
+.card-4 {
+  background-color: #d93b30;
+}
+
+.todo_cards-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.todo_cards {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 70px 20px;
+}
+
+.todo_card {
+  position: relative;
+}
+
+.todo_card img {
+  height: 628px;
+  width: 628px;
+  object-fit: cover; /* Prevents image distortion */
+  display: block;
+  border-radius: 8px;
+}
+
+.todo_card_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-60%, -10%); /* Dynamic centering trick */
+  color: white;
+  text-align: center;
+  z-index: 10; /* Ensures content stays above the overlay */
+  width: 468px;
+  max-width: 600px;
+  background: transparent;
+}
+
+.todo_card_content h1 {
+  width: 468px;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  vertical-align: middle;
+}
+
+.todo_card_content button {
+  color: black;
+  background-color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.todo_card_content button:hover {
+  background-color: #bc1a6e;
+}
+
+.gift_card_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 70px 20px;
+}
+
+.gift_card_header h3 {
+  color: black;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 56px;
+}
+
+.gift_card_header button {
+  color: white;
+  background-color: black;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  height: 56px;
+  width: 135px;
+  margin-top: 20px;
+}
+
+.gift_card {
+  height: 320px;
+  width: 854.22px;
+}
+
+.hosting_section {
+  margin: 0 70px 30px;
+  position: relative;
+}
+
+.hosting_section img {
+  width: 100%;
+  height: 640px;
+  object-fit: cover; /* Prevents image distortion */
+  border-radius: 8px;
+}
+
+.hosting_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-90%, -50%); /* Dynamic centering trick */
+  color: white;
+  text-align: center;
+  z-index: 10; /* Ensures content stays above the overlay */
+  width: 90%;
+  max-width: 600px;
+  background: transparent;
+}
+
+.hosting_content h1 {
+  width: 465px;
+  font-size: 96px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  vertical-align: middle;
+  letter-spacing: 0%;
+}
+
+.hosting_content button {
+  width: 174px;
+  height: 56px;
+  border-radius: 8px;
+  padding: 16px 24px;
+  gap: 8px;
+  color: black;
+  border: none;
+  background-color: #e5e7eb;
+  display: flex;
+  justify-content: start;
+  margin: 50px 80px 0;
+  font-size: 16px;
+  font-weight: 500;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.hosting_content button:hover {
+  background-color: #bc1a6e;
+}
+
+.getaways {
+  height: 304px;
+  margin: 30px 70px;
+}
+
+.getaways_content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.destinations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.destinations .top_tittle {
+  color: #6b7280;
+  text-decoration: underline solid #6b7280;
+}
+
+.destination {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.destination .title {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.destination .location {
+  color: #6b7280;
+}
+
+.getaways h2 {
+  color: black;
+  margin: 30px 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.destinations span {
+  color: black;
+  font-size: 14px;
+}
+
+.destinations .Show_More span {
+  text-decoration: underline solid black;
+  font-weight: 500;
+}

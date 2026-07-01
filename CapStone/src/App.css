@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.calendar_container {
+  width: 323px !important;
+}
+
+.C_container {
+  display: flex;
+}

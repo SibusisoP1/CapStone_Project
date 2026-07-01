@@ -1,0 +1,264 @@
+.Listing_Container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.visit_listing {
+  border-bottom: 1px solid gray;
+}
+
+.l_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.view_list {
+  border: 1px solid gray;
+  border-radius: 100px;
+  background-color: #e5e7eb;
+  width: 139px;
+  margin: 10px;
+  padding: 3px;
+}
+
+.view_list span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.create_list_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.creating_list_container_detail {
+  display: flex;
+  gap: 50px;
+}
+
+.list_name {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_name span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.list_name input {
+  width: 381px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.list_location {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_location span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.list_location input {
+  width: 381px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.list_description {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_description span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.list_description input {
+  width: 381px;
+  height: 118px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.room_detail {
+  display: flex;
+  gap: 35px;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+}
+
+.room span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.room input {
+  width: 62px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.baths {
+  display: flex;
+  flex-direction: column;
+}
+
+.baths span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.baths input {
+  width: 62px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.types {
+  display: flex;
+  flex-direction: column;
+}
+
+.types span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.types input {
+  width: 219px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.room_location {
+  display: flex;
+  flex-direction: column;
+}
+
+.room_location span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.room_location input {
+  width: 381px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.amneties_container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 55px;
+}
+
+.amneties_container button {
+  width: 85px;
+  height: 55px;
+  background-color: #4153f5;
+  border-radius: 7px;
+  margin-top: 18px;
+  color: white;
+}
+
+.amneties {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.amneties span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.amneties input {
+  width: 381px;
+  height: 55px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.amneties button {
+  margin-top: 30px;
+}
+
+.create_list_container > button {
+  width: 201px;
+  height: 55px;
+  background-color: #4153f5;
+  color: white;
+  border-radius: 7px;
+  margin-left: 320px;
+  margin-top: 20px;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+}
+
+.images span {
+  font-size: 14px;
+  color: #4153f5;
+}
+
+.images input {
+  width: 858px;
+  height: 122px;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.btn_create_list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.btn_create {
+  width: 277px;
+  height: 55px;
+  border-radius: 7px;
+  background-color: #4153f5;
+  color: white;
+}
+
+.btn_cancel {
+  width: 277px;
+  height: 55px;
+  border-radius: 7px;
+  background-color: #cc2d4a;
+  color: white;
+}

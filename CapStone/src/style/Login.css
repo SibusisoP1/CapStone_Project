@@ -1,0 +1,77 @@
+.login_nav img {
+  color: #de3151;
+  margin: 30px 30px;
+}
+
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.Login_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+}
+
+.Login_Container h1 {
+  color: black;
+}
+
+.username {
+  display: flex;
+  flex-direction: column;
+}
+
+.username span {
+  color: #4153f5;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+}
+
+.password input {
+  height: 55px;
+  width: 464px;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-size: 16px;
+}
+.password span {
+  color: #4153f5;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.username input {
+  height: 55px;
+  width: 464px;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.Forgot {
+  color: #4153f5;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.btn_login {
+  background-color: #4153f5;
+  width: 277px;
+  height: 55px;
+  border-radius: 7px;
+  border: none;
+  margin-top: 50px;
+  font-weight: 500;
+}

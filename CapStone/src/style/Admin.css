@@ -1,0 +1,41 @@
+.admin_nav_container {
+  padding: 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin_nav_top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin_profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.admin_nav_bottom {
+  margin-top: 40px;
+  display: flex;
+  gap: 10px;
+}
+
+.admin_nav_bottom div {
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 100px;
+}
+
+.Admin_Add {
+  padding: 30px;
+}
+
+.Admin_Add h3 {
+  padding-top: 30px;
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 400;
+  margin-left: 15px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
