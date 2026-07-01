@@ -10,7 +10,7 @@ export class UserController {
     const role = req.body.role;
 
     if (!errors.isEmpty()) {
-      next(new Error(errors.array()[0].msg));
+      return next(new Error(errors.array()[0].msg));
     }
 
     const data = {
