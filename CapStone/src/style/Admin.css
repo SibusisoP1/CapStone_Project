@@ -26,12 +26,6 @@
   border-radius: 100px;
 }
 
-.admin_logout {
-  cursor: pointer;
-  color: #e11d48;
-  font-weight: 600;
-}
-
 .Admin_Add {
   padding: 30px;
 }
