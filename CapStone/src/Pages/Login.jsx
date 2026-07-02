@@ -18,7 +18,11 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/admin");
+      if (userInfo.user?.role === "host") {
+        navigate("/admin/view-listing");
+      } else {
+        navigate("/locations");
+      }
     }
   }, [userInfo, navigate]);
 

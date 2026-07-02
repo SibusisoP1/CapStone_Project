@@ -7,6 +7,7 @@ import "../style/Admin.css";
 
 const Admin_nav = () => {
   const { userInfo } = useSelector((state) => state.userLogin);
+  const isHost = userInfo?.user?.role === "host";
 
   return (
     <div className="admin_nav_container">
@@ -29,16 +30,20 @@ const Admin_nav = () => {
             <span>View Reservation</span>
           </Link>
         </div>
-        <div>
-          <Link to="/admin/view-listing">
-            <span>View Listing</span>
-          </Link>
-        </div>
-        <div>
-          <Link to="/admin/create-listing">
-            <span>Create Listing</span>
-          </Link>
-        </div>
+        {isHost && (
+          <>
+            <div>
+              <Link to="/admin/view-listing">
+                <span>View Listing</span>
+              </Link>
+            </div>
+            <div>
+              <Link to="/admin/create-listing">
+                <span>Create Listing</span>
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
