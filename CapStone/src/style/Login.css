@@ -75,3 +75,18 @@
   margin-top: 50px;
   font-weight: 500;
 }
+
+.toggle_auth {
+  display: block;
+  margin-top: 16px;
+  color: #cc2d4a;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.role select {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  width: 100%;
+}

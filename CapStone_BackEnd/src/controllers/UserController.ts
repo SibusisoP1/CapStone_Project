@@ -51,6 +51,5 @@ export class UserController {
     } catch (err) {
       next(err);
     }
-    res.send(req.user);
   }
 }

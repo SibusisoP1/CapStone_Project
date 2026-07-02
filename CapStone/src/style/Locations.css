@@ -18,3 +18,9 @@
   font-weight: 400;
   color: #374151;
 }
+
+.location_filter_banner {
+  padding: 16px 40px 0;
+  font-size: 18px;
+  font-weight: 600;
+}

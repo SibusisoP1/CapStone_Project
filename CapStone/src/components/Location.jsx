@@ -2,13 +2,14 @@ import React from "react";
 import "../style/Location.css";
 import like_icon from "../assets/like_icon.png";
 import star from "../assets/star.png";
+import { resolveImageUrl } from "../api/axiosInstance";
 
 const Location = ({ img, location, title, description, price }) => {
   return (
     <div className="Location">
       <div className="location_container">
         <div className="location_image">
-          <img src={img} alt="location image" />
+          <img src={resolveImageUrl(img)} alt="location image" />
         </div>
         <div className="location_details">
           <div className="loc_header">

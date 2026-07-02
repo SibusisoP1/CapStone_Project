@@ -39,3 +39,47 @@
   padding-bottom: 30px;
   border-bottom: 1px solid #e5e7eb;
 }
+
+/* Reservations table */
+.reservations_page {
+  padding: 20px 40px;
+}
+
+.reservations_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.reservations_table th,
+.reservations_table td {
+  border: 1px solid #e5e7eb;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.reservations_table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.delete_reservation_btn,
+.Add_Hotel_Container .delete {
+  background-color: #cc2d4a;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete_reservation_btn:hover,
+.Add_Hotel_Container .delete:hover {
+  background-color: #b02640;
+}
+
+.listing_error,
+.login_error {
+  color: #cc2d4a;
+}
