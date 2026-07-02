@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Home from "./Pages/Home";
 import AirBnb_Nav from "./components/AirBnb_Nav";
 import Footer from "./components/footer";
@@ -30,6 +31,21 @@ const SimpleLayout = ({ children }) => (
   </>
 );
 
+// Any logged-in user may access; otherwise send to login.
+const RequireAuth = ({ children }) => {
+  const { userInfo } = useSelector((state) => state.userLogin);
+  return userInfo ? children : <Navigate to="/login" replace />;
+};
+
+// Only hosts may access; guests go to the hotels page, anon to login.
+const RequireHost = ({ children }) => {
+  const { userInfo } = useSelector((state) => state.userLogin);
+  if (!userInfo) return <Navigate to="/login" replace />;
+  if (userInfo.user?.role !== "host")
+    return <Navigate to="/locations" replace />;
+  return children;
+};
+
 const Router = () => {
   return (
     <Routes>
@@ -41,11 +57,13 @@ const Router = () => {
       {/* Authentication routes */}
       <Route path="/login" element={<SimpleLayout><Login /></SimpleLayout>} />
       
-      {/* Admin routes */}
-      <Route path="/admin" element={<AdminLayout><Admin_add_Hotel /></AdminLayout>} />
-      <Route path="/admin/view-listing" element={<AdminLayout><Admin_add_Hotel /></AdminLayout>} />
-      <Route path="/admin/create-listing" element={<AdminLayout><View_Listing /></AdminLayout>} />
-      <Route path="/admin/reservations" element={<AdminLayout><Reservetion /></AdminLayout>} />
+      {/* Host-only admin routes */}
+      <Route path="/admin" element={<RequireHost><AdminLayout><Admin_add_Hotel /></AdminLayout></RequireHost>} />
+      <Route path="/admin/view-listing" element={<RequireHost><AdminLayout><Admin_add_Hotel /></AdminLayout></RequireHost>} />
+      <Route path="/admin/create-listing" element={<RequireHost><AdminLayout><View_Listing /></AdminLayout></RequireHost>} />
+
+      {/* Reservations: any logged-in user (guest sees own, host sees all) */}
+      <Route path="/admin/reservations" element={<RequireAuth><AdminLayout><Reservetion /></AdminLayout></RequireAuth>} />
       
       {/* Fallback route */}
       <Route path="*" element={<MainLayout><Home /></MainLayout>} />
