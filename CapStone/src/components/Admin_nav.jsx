@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Profile from "../assets/Profile_Dropdown.png";
 import Logo from "../assets/Red_Logo.png";
 import "../style/Admin.css";
 
 const Admin_nav = () => {
+  const { userInfo } = useSelector((state) => state.userLogin);
+
   return (
     <div className="admin_nav_container">
       <div className="admin_nav_top">
@@ -14,7 +17,7 @@ const Admin_nav = () => {
           </Link>
         </div>
         <div className="admin_profile">
-          <span>John Doe</span>
+          <span>{userInfo?.user?.username || "Guest"}</span>
           <span>
             <img src={Profile} alt="" />
           </span>
