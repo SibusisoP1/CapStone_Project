@@ -4,7 +4,6 @@ import * as bodyParser from "body-parser";
 import cors from "cors";
 import { getEnviromentVariables } from "./enviroments/enviroment";
 import UserRouter from "./routers/UserRouter";
-import BannerRouter from "./routers/BannerRouter";
 import HotelRouter from "./routers/HotelRouter";
 import ReservationRouter from "./routers/ReservationRouter";
 
@@ -42,7 +41,6 @@ export class Server {
   setRoutes() {
     this.app.use("/src/uploads", express.static("src/uploads"));
     this.app.use("/api/user", UserRouter);
-    this.app.use("/api/banner", BannerRouter);
     this.app.use("/api/hotel", HotelRouter);
     this.app.use("/api/reservation", ReservationRouter);
   }
