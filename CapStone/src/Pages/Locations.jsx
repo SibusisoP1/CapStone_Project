@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import "../style/Locations.css";
 import Location from "../components/Location";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,14 +60,19 @@ const Locations = () => {
         <h3>No hotels found{selectedLocation ? ` in ${selectedLocation}` : ""}.</h3>
       ) : (
         filteredListings.map((listing) => (
-          <Location
+          <Link
             key={listing._id}
-            img={listing.img}
-            location={listing.location}
-            title={listing.name}
-            description={listing.description}
-            price={listing.price}
-          />
+            to={`/location/${listing._id}`}
+            className="location_link"
+          >
+            <Location
+              img={listing.img}
+              location={listing.location}
+              title={listing.name}
+              description={listing.description}
+              price={listing.price}
+            />
+          </Link>
         ))
       )}
     </div>
