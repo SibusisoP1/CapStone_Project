@@ -41,8 +41,8 @@ const View_Listing = () => {
                   <input type="text" />
                 </div>
               </div>
-              <div className="room_location">
-                <span>Location</span>
+              <div className="room">
+                <span>Guest</span>
                 <input type="text" />
               </div>
               <div className="amneties_container">

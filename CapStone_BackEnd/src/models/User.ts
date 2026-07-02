@@ -8,11 +8,3 @@ const userSchema = new mongoose.Schema({
 });
 
 export default model("users", userSchema);
-// export class User {
-//   constructor(
-//     public username: string,
-//     public password: string,
-//     public _id: string,
-//     public role: string,
-//   ) {}
-// }
