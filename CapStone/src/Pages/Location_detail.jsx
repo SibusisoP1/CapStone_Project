@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import red_star from "../assets/red_star.png";
 import red_badge from "../assets/red_badge.png";
 import share from "../assets/share.png";
