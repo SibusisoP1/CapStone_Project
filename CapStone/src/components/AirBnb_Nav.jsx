@@ -6,6 +6,8 @@ import Search_Button from "../assets/Search_Button.png";
 import Profile_Dropdown from "../assets/Profile_Dropdown.png";
 import "../style/AirBnb_Nav.css";
 import { useDispatch, useSelector } from "react-redux";
+import { LOCATIONS } from "../constants/options";
+import { logout } from "../action/userActions";
 
 const AirBnb_Nav = () => {
   const navigate = useNavigate();
@@ -31,11 +33,7 @@ const AirBnb_Nav = () => {
 
   const locations = [
     { id: "all", name: "All Locations" },
-    { id: "new-york", name: "New York" },
-    { id: "paris", name: "Paris" },
-    { id: "tokyo", name: "Tokyo" },
-    { id: "cape-town", name: "Cape Town" },
-    { id: "thailand", name: "Thailand" },
+    ...LOCATIONS.map((name) => ({ id: name, name })),
   ];
 
   // Check login state on mount and when localStorage changes
@@ -85,8 +83,11 @@ const AirBnb_Nav = () => {
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
     setShowLocationPicker(false);
-    // Navigate to locations page - database will handle filtering
-    navigate("/locations");
+    if (location.id === "all") {
+      navigate("/locations");
+    } else {
+      navigate(`/locations?location=${encodeURIComponent(location.name)}`);
+    }
   };
 
   const handleCheckInClick = (e) => {
@@ -127,8 +128,7 @@ const AirBnb_Nav = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    // setIsLoggedIn(false);
+    dispatch(logout());
     setShowDropdown(false);
     navigate("/");
   };

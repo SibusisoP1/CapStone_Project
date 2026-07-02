@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import red_star from "../assets/red_star.png";
 import red_badge from "../assets/red_badge.png";
 import share from "../assets/share.png";
@@ -21,6 +21,11 @@ import house from "../assets/house.png";
 import byce from "../assets/byce.png";
 import bone from "../assets/bone.png";
 import Date_selector from "../components/Date_selector";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axiosInstance, { resolveImageUrl } from "../api/axiosInstance";
+import { createReservation } from "../action/reservationAction";
+import { RESERVATION_CREATE_RESET } from "../types/reservationTypes";
 import calender from "../assets/calender.png";
 import big_star from "../assets/big_star.png";
 import Bar from "../assets/Bar.png";
@@ -42,14 +47,100 @@ import shopping_cart from "../assets/shopping_cart.png";
 import party from "../assets/party.png";
 
 const Location_detail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
+  const [guests, setGuests] = useState(1);
+  const [hotel, setHotel] = useState(null);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const reservationCreate = useSelector((state) => state.reservationCreate);
+  const {
+    loading: createLoading,
+    error: createError,
+    success: createSuccess,
+  } = reservationCreate;
+
+  useEffect(() => {
+    let ignore = false;
+    const fetchHotel = async () => {
+      try {
+        const { data } = await axiosInstance.get(`/hotel/hotels/${id}`);
+        if (!ignore) setHotel(data);
+      } catch {
+        if (!ignore) setHotel(null);
+      }
+    };
+    if (id) fetchHotel();
+    return () => {
+      ignore = true;
+    };
+  }, [id]);
+
+  useEffect(() => {
+    if (createSuccess) {
+      dispatch({ type: RESERVATION_CREATE_RESET });
+      navigate("/admin/reservations");
+    }
+  }, [createSuccess, dispatch, navigate]);
+
+  const formatDay = (date) =>
+    date ? date.toLocaleDateString() : "Select date";
+
+  const toInputValue = (date) => {
+    if (!date) return "";
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  };
+
+  const parseInputValue = (value) =>
+    value ? new Date(`${value}T00:00:00`) : null;
+
+  const todayValue = toInputValue(new Date());
+
+  const minCheckOutValue = checkIn
+    ? toInputValue(new Date(checkIn.getTime() + 86400000))
+    : todayValue;
+
+  const handleCheckInChange = (e) => {
+    const next = parseInputValue(e.target.value);
+    setCheckIn(next);
+    if (next && checkOut && checkOut <= next) {
+      setCheckOut(null);
+    }
+  };
+
+  const handleReserve = () => {
+    if (!userInfo) {
+      navigate("/login");
+      return;
+    }
+    if (!checkIn || !checkOut) {
+      alert("Please select check-in and check-out dates.");
+      return;
+    }
+    dispatch(
+      createReservation({
+        hotel_id: id,
+        checkin: checkIn.toISOString(),
+        checkout: checkOut.toISOString(),
+      }),
+    );
+  };
+
   return (
     <div className="Location_detail">
       <div className="details_container">
         <div className="loc_detail_header">
           <div className="detail_left">
-            <h1>Getaway</h1>
+            <h1>{hotel ? hotel.name : "Getaway"}</h1>
             <div className="left_details">
               <div className="l_left">
                 <span>
@@ -80,7 +171,7 @@ const Location_detail = () => {
           <div className="loc_detail_images">
             <div className="big_image">
               <span>
-                <img src="" alt="big image" />
+                <img src={resolveImageUrl(hotel?.img)} alt="big image" />
               </span>
             </div>
             <div className="small_images">
@@ -175,7 +266,7 @@ const Location_detail = () => {
             <div className="section1_right">
               <div className="sect1_price_container">
                 <div className="price_header">
-                  <span className="p">$75/ night</span>
+                  <span className="p">${hotel ? hotel.price : 75}/ night</span>
                   <div className="price_header_right">
                     <span>
                       <img src="" alt="star" />
@@ -188,21 +279,51 @@ const Location_detail = () => {
                   <div className="check">
                     <div className="checkin">
                       <span className="check_tittle">check-in</span>
-                      <span className="gray_t">21/10/2025</span>
+                      <input
+                        type="date"
+                        className="check_input"
+                        min={todayValue}
+                        value={toInputValue(checkIn)}
+                        onChange={handleCheckInChange}
+                      />
                     </div>
                     <div className="checkout">
                       <span className="check_tittle">check-out</span>
-                      <span className="gray_t">21/10/2025</span>
+                      <input
+                        type="date"
+                        className="check_input"
+                        min={minCheckOutValue}
+                        value={toInputValue(checkOut)}
+                        onChange={(e) =>
+                          setCheckOut(parseInputValue(e.target.value))
+                        }
+                      />
                     </div>
                   </div>
                   <div className="guest">
                     <span className="check_tittle">Guests</span>
-                    <span className="gray_t">2 Guest</span>
+                    <select
+                      className="guest_select"
+                      value={guests}
+                      onChange={(e) => setGuests(Number(e.target.value))}
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                        <option key={n} value={n}>
+                          {n} {n === 1 ? "Guest" : "Guests"}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div className="btn_reserve">
-                  <button>Reserve</button>
-                  <span>You wount be charged yet</span>
+                  <button onClick={handleReserve} disabled={createLoading}>
+                    {createLoading ? "Reserving..." : "Reserve"}
+                  </button>
+                  {createError ? (
+                    <span className="listing_error">{createError}</span>
+                  ) : (
+                    <span>You wount be charged yet</span>
+                  )}
                 </div>
                 <div className="price_detail">
                   <div className="p_row1">

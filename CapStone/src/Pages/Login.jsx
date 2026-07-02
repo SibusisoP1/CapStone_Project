@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../action/userActions";
+import { login, register } from "../action/userActions";
 import "../style/Login.css";
 import Logo from "../assets/Red_Logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
+  const [isRegister, setIsRegister] = useState(false);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("host");
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
-      //later
+      navigate("/admin");
     }
-  }, [userInfo]);
+  }, [userInfo, navigate]);
 
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await dispatch(login(email, password));
-    navigate("/admin");
+    if (isRegister) {
+      dispatch(register(username, password, role));
+    } else {
+      dispatch(login(username, password));
+    }
   };
 
   return (
@@ -34,16 +39,17 @@ const Login = () => {
         </Link>
       </div>
       <div className="Login">
-        <div className="Login_Container">
-          <h1>Login</h1>
-          {error && <h1>{error}</h1>}
-          {loading && <h1>Loading...</h1>}
+        <form className="Login_Container" onSubmit={handleSubmit}>
+          <h1>{isRegister ? "Sign up" : "Login"}</h1>
+          {error && <p className="login_error">{error}</p>}
+          {loading && <p>Loading...</p>}
           <div className="username">
-            <span>Email</span>
+            <span>Username</span>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
           <div className="password">
@@ -52,13 +58,31 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
-          <span className="Forgot">Forgot Password ?</span>
-          <button className="btn_login" onClick={handleLogin}>
-            Login
+          {isRegister && (
+            <div className="role">
+              <span>Role</span>
+              <select value={role} onChange={(e) => setRole(e.target.value)}>
+                <option value="host">Host</option>
+                <option value="guest">Guest</option>
+              </select>
+            </div>
+          )}
+          {!isRegister && <span className="Forgot">Forgot Password ?</span>}
+          <button className="btn_login" type="submit" disabled={loading}>
+            {isRegister ? "Sign up" : "Login"}
           </button>
-        </div>
+          <span
+            className="toggle_auth"
+            onClick={() => setIsRegister(!isRegister)}
+          >
+            {isRegister
+              ? "Already have an account? Login"
+              : "Don't have an account? Sign up"}
+          </span>
+        </form>
       </div>
     </>
   );

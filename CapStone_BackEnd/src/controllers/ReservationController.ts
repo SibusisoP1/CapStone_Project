@@ -47,7 +47,10 @@ export class ReservationController {
       req.decoded?._id;
 
     try {
-      const reservations = await Reservation.find({ user_id: user_id });
+      const reservations = await Reservation.find({ user_id: user_id }).populate(
+        "hotel_id",
+        "name",
+      );
       res.send(reservations);
     } catch (err) {
       next(err);
@@ -56,7 +59,10 @@ export class ReservationController {
 
   static async getAllReservations(req: any, res: any, next: any) {
     try {
-      const reservations = await Reservation.find({});
+      const reservations = await Reservation.find({}).populate(
+        "hotel_id",
+        "name",
+      );
       res.send(reservations);
     } catch (err) {
       next(err);

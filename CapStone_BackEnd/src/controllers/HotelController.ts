@@ -9,7 +9,9 @@ export class HotelController {
       req.files?.image?.[0] ||
       req.files?.file?.[0];
     const imageValue = hotel_data.img || hotel_data.image || hotel_data.file;
-    const path = uploadedFile?.path || imageValue;
+    const path = uploadedFile
+      ? `/src/uploads/${uploadedFile.filename}`
+      : imageValue;
 
     try {
       const data = {

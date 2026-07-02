@@ -262,3 +262,41 @@
   background-color: #cc2d4a;
   color: white;
 }
+
+/* Create listing form controls */
+.list_location select,
+.types select,
+.images input[type="file"] {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.amenity_list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.amenity_list li {
+  background-color: #f3f4f6;
+  border-radius: 16px;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.remove_amenity {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: #6b7280;
+}

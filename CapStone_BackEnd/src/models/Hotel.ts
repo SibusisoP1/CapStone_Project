@@ -13,8 +13,8 @@ const HotelSchema = new mongoose.Schema({
   amneties: { type: [String], required: true },
   type: { type: String, required: true },
   status: { type: Number, required: true, default: 1 },
-  created_at: { type: Date, required: true, default: new Date() },
-  updated_at: { type: Date, required: true, default: new Date() },
+  created_at: { type: Date, required: true, default: Date.now },
+  updated_at: { type: Date, required: true, default: Date.now },
 });
 
 export default model("hotels", HotelSchema);
