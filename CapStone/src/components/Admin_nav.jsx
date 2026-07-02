@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../action/userActions";
 import Profile from "../assets/Profile_Dropdown.png";
 import Logo from "../assets/Red_Logo.png";
 import "../style/Admin.css";
@@ -8,6 +9,13 @@ import "../style/Admin.css";
 const Admin_nav = () => {
   const { userInfo } = useSelector((state) => state.userLogin);
   const isHost = userInfo?.user?.role === "host";
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <div className="admin_nav_container">
@@ -44,6 +52,11 @@ const Admin_nav = () => {
             </div>
           </>
         )}
+        <div>
+          <span className="admin_logout" onClick={handleLogout}>
+            Logout
+          </span>
+        </div>
       </div>
     </div>
   );
