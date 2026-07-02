@@ -207,6 +207,23 @@
   gap: 5px;
 }
 
+.check_input,
+.guest_select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #222222;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.check_input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
 .btn_reserve {
   display: flex;
   flex-direction: column;

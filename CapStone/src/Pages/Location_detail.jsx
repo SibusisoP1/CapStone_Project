@@ -53,6 +53,7 @@ const Location_detail = () => {
 
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
+  const [guests, setGuests] = useState(1);
   const [hotel, setHotel] = useState(null);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -90,6 +91,31 @@ const Location_detail = () => {
 
   const formatDay = (date) =>
     date ? date.toLocaleDateString() : "Select date";
+
+  const toInputValue = (date) => {
+    if (!date) return "";
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  };
+
+  const parseInputValue = (value) =>
+    value ? new Date(`${value}T00:00:00`) : null;
+
+  const todayValue = toInputValue(new Date());
+
+  const minCheckOutValue = checkIn
+    ? toInputValue(new Date(checkIn.getTime() + 86400000))
+    : todayValue;
+
+  const handleCheckInChange = (e) => {
+    const next = parseInputValue(e.target.value);
+    setCheckIn(next);
+    if (next && checkOut && checkOut <= next) {
+      setCheckOut(null);
+    }
+  };
 
   const handleReserve = () => {
     if (!userInfo) {
@@ -253,16 +279,40 @@ const Location_detail = () => {
                   <div className="check">
                     <div className="checkin">
                       <span className="check_tittle">check-in</span>
-                      <span className="gray_t">{formatDay(checkIn)}</span>
+                      <input
+                        type="date"
+                        className="check_input"
+                        min={todayValue}
+                        value={toInputValue(checkIn)}
+                        onChange={handleCheckInChange}
+                      />
                     </div>
                     <div className="checkout">
                       <span className="check_tittle">check-out</span>
-                      <span className="gray_t">{formatDay(checkOut)}</span>
+                      <input
+                        type="date"
+                        className="check_input"
+                        min={minCheckOutValue}
+                        value={toInputValue(checkOut)}
+                        onChange={(e) =>
+                          setCheckOut(parseInputValue(e.target.value))
+                        }
+                      />
                     </div>
                   </div>
                   <div className="guest">
                     <span className="check_tittle">Guests</span>
-                    <span className="gray_t">2 Guest</span>
+                    <select
+                      className="guest_select"
+                      value={guests}
+                      onChange={(e) => setGuests(Number(e.target.value))}
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                        <option key={n} value={n}>
+                          {n} {n === 1 ? "Guest" : "Guests"}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div className="btn_reserve">
