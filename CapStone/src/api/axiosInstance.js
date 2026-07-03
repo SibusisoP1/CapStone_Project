@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Base URL of the backend API. Override with VITE_API_URL in a .env file.
 export const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+  import.meta.env.VITE_API_URL || "https://capstone-project-backend-oywm.onrender.com";
 
 // Root of the backend server (used to build absolute URLs for uploaded images).
 export const SERVER_URL = API_URL.replace(/\/api\/?$/, "");
