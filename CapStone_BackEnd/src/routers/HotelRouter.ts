@@ -42,7 +42,21 @@ class HotelRouter {
     );
   }
 
-  patchRoutes() {}
+  patchRoutes() {
+    this.router.patch(
+      "/hotels/:id",
+      GlobalMiddleWare.auth,
+      GlobalMiddleWare.adminRole,
+      new Utils().multer.fields([
+        { name: "img", maxCount: 1 },
+        { name: "image", maxCount: 1 },
+        { name: "file", maxCount: 1 },
+      ]),
+      HotelValidators.updateHotel(),
+      GlobalMiddleWare.checkError,
+      HotelController.updateHotel,
+    );
+  }
 
   putRoutes() {
     this.router.put(
@@ -54,7 +68,7 @@ class HotelRouter {
         { name: "image", maxCount: 1 },
         { name: "file", maxCount: 1 },
       ]),
-      HotelValidators.addHotel(),
+      HotelValidators.updateHotel(),
       GlobalMiddleWare.checkError,
       HotelController.updateHotel,
     );

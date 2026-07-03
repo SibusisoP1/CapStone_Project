@@ -36,7 +36,10 @@ export class HotelController {
 
   static async getHotels(req: any, res: any, next: any) {
     try {
-      const hotels = await Hotel.find({});
+      const hotels = await Hotel.find({}).sort({
+        updated_at: -1,
+        created_at: -1,
+      });
       res.send(hotels);
     } catch (err) {
       next(err);
@@ -48,7 +51,7 @@ export class HotelController {
     const hotel_id = hotel._id;
 
     try {
-      const hotelData = await Hotel.findById({ _id: hotel_id });
+      const hotelData = await Hotel.findById(hotel_id);
       res.json(hotelData);
     } catch (err) {
       next(err);
@@ -96,25 +99,57 @@ export class HotelController {
     }
 
     try {
-      const updateData: any = {
-        name: hotel_data.name,
-        location: hotel_data.location,
-        description: hotel_data.description,
-        price: parseInt(hotel_data.price),
-        guest: parseInt(hotel_data.guest),
-        bedroom: parseInt(hotel_data.bedroom),
-        bathroom: parseInt(hotel_data.bathroom),
-        type: hotel_data.type,
-        updated_at: new Date(),
-      };
+      const updateData: any = {};
 
-      if (hotel_data.amneties) {
-        updateData.amneties = JSON.parse(hotel_data.amneties);
+      if (hotel_data.name !== undefined) {
+        updateData.name = hotel_data.name;
+      }
+
+      if (hotel_data.location !== undefined) {
+        updateData.location = hotel_data.location;
+      }
+
+      if (hotel_data.description !== undefined) {
+        updateData.description = hotel_data.description;
+      }
+
+      if (hotel_data.price !== undefined && hotel_data.price !== "") {
+        updateData.price = parseInt(hotel_data.price, 10);
+      }
+
+      if (hotel_data.guest !== undefined && hotel_data.guest !== "") {
+        updateData.guest = parseInt(hotel_data.guest, 10);
+      }
+
+      if (hotel_data.bedroom !== undefined && hotel_data.bedroom !== "") {
+        updateData.bedroom = parseInt(hotel_data.bedroom, 10);
+      }
+
+      if (hotel_data.bathroom !== undefined && hotel_data.bathroom !== "") {
+        updateData.bathroom = parseInt(hotel_data.bathroom, 10);
+      }
+
+      if (hotel_data.type !== undefined) {
+        updateData.type = hotel_data.type;
+      }
+
+      if (hotel_data.amneties !== undefined) {
+        updateData.amneties =
+          typeof hotel_data.amneties === "string"
+            ? JSON.parse(hotel_data.amneties)
+            : hotel_data.amneties;
       }
 
       if (path) {
         updateData.img = path;
       }
+
+      if (Object.keys(updateData).length === 0) {
+        req.errorStatus = 400;
+        return next(new Error("No fields provided for update"));
+      }
+
+      updateData.updated_at = new Date();
 
       const hotel = await Hotel.findByIdAndUpdate(hotel_id, updateData, {
         new: true,

@@ -37,6 +37,68 @@ export class HotelValidators {
       body("type", "Type is Required").notEmpty(),
     ];
   }
+  static updateHotel() {
+    return [
+      body("name", "Name must not be empty").optional().notEmpty(),
+      body("location", "Location must not be empty").optional().notEmpty(),
+      body("description").optional(),
+      body("price", "Price must be a number")
+        .optional()
+        .custom((value) => {
+          if (value === undefined || value === null || value === "") {
+            return true;
+          }
+
+          if (typeof value === "number" || typeof value === "string") {
+            return true;
+          }
+
+          throw new Error("Price must be a number");
+        }),
+      body("guest", "Guest must be a number")
+        .optional()
+        .custom((value) => {
+          if (value === undefined || value === null || value === "") {
+            return true;
+          }
+
+          if (typeof value === "number" || typeof value === "string") {
+            return true;
+          }
+
+          throw new Error("Guest must be a number");
+        }),
+      body("bedroom", "Bedroom must be a number")
+        .optional()
+        .custom((value) => {
+          if (value === undefined || value === null || value === "") {
+            return true;
+          }
+
+          if (typeof value === "number" || typeof value === "string") {
+            return true;
+          }
+
+          throw new Error("Bedroom must be a number");
+        }),
+      body("bathroom", "Bathroom must be a number")
+        .optional()
+        .custom((value) => {
+          if (value === undefined || value === null || value === "") {
+            return true;
+          }
+
+          if (typeof value === "number" || typeof value === "string") {
+            return true;
+          }
+
+          throw new Error("Bathroom must be a number");
+        }),
+      body("amneties", "Amenities must be a string").optional().isString(),
+      body("type", "Type must not be empty").optional().notEmpty(),
+    ];
+  }
+
   static getHotel() {
     return [
       param("id", "Hotel ID is Required")
