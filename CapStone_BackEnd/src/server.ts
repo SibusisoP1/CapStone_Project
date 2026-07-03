@@ -39,7 +39,8 @@ export class Server {
   }
 
   setRoutes() {
-    this.app.use("/src/uploads", express.static("src/uploads"));
+    const uploadDirectory = path.resolve(__dirname, "uploads");
+    this.app.use("/src/uploads", express.static(uploadDirectory));
     this.app.use("/api/user", UserRouter);
     this.app.use("/api/hotel", HotelRouter);
     this.app.use("/api/reservation", ReservationRouter);
