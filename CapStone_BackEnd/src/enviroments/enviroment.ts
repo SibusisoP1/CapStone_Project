@@ -7,8 +7,20 @@ export interface Enviroment {
 }
 
 export function getEnviromentVariables() {
-  if (process.env.NODE_ENV === "production") {
-    return ProdEnviroment;
-  }
-  return DevEnviroment;
+   const isProduction = process.env.NODE_ENV === "production";
+  const dbUri =
+    process.env.db_uri ||
+    process.env.DB_URI ||
+    process.env.MONGODB_URI ||
+    (isProduction ? ProdEnviroment.db_uri : DevEnviroment.db_uri);
+  const jwtSecretKey =
+    process.env.jwt_secret_key ||
+    process.env.JWT_SECRET_KEY ||
+    process.env.JWT_SECRET ||
+    (isProduction ? ProdEnviroment.jwt_secret_key : DevEnviroment.jwt_secret_key);
+
+  return {
+    db_uri: dbUri,
+    jwt_secret_key: jwtSecretKey,
+  };
 }
