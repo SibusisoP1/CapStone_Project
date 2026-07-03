@@ -4,7 +4,7 @@ import like_icon from "../assets/like_icon.png";
 import star from "../assets/star.png";
 import { resolveImageUrl } from "../api/axiosInstance";
 
-const Location = ({ img, location, title, description, price }) => {
+const Location = ({ img, location, title, bathrooms, bedrooms, price }) => {
   return (
     <div className="Location">
       <div className="location_container">
@@ -20,7 +20,12 @@ const Location = ({ img, location, title, description, price }) => {
             <img src={like_icon} alt="" />
           </div>
           <div className="loc_body">
-            <span>{description}</span>
+            <div className="top">
+              <span>
+                {bathrooms} bathrooms • {bedrooms} bedrooms • Wifi • Kitchen •
+                Free parking • Washing machine
+              </span>
+            </div>
           </div>
           <div className="loc_footer">
             <div className="footer_left">

@@ -6,6 +6,10 @@ import {
   LISTING_CREATE_SUCCESS,
   LISTING_CREATE_FAIL,
   LISTING_CREATE_RESET,
+  LISTING_UPDATE_REQUEST,
+  LISTING_UPDATE_SUCCESS,
+  LISTING_UPDATE_FAIL,
+  LISTING_UPDATE_RESET,
   LISTING_DELETE_REQUEST,
   LISTING_DELETE_SUCCESS,
   LISTING_DELETE_FAIL,
@@ -33,6 +37,21 @@ export const listingCreateReducer = (state = {}, action) => {
     case LISTING_CREATE_FAIL:
       return { loading: false, error: action.payload };
     case LISTING_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const listingUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case LISTING_UPDATE_REQUEST:
+      return { loading: true };
+    case LISTING_UPDATE_SUCCESS:
+      return { loading: false, success: true, listing: action.payload };
+    case LISTING_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    case LISTING_UPDATE_RESET:
       return {};
     default:
       return state;

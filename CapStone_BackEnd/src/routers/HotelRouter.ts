@@ -44,7 +44,21 @@ class HotelRouter {
 
   patchRoutes() {}
 
-  putRoutes() {}
+  putRoutes() {
+    this.router.put(
+      "/hotels/:id",
+      GlobalMiddleWare.auth,
+      GlobalMiddleWare.adminRole,
+      new Utils().multer.fields([
+        { name: "img", maxCount: 1 },
+        { name: "image", maxCount: 1 },
+        { name: "file", maxCount: 1 },
+      ]),
+      HotelValidators.addHotel(),
+      GlobalMiddleWare.checkError,
+      HotelController.updateHotel,
+    );
+  }
 
   deleteRoutes() {
     this.router.delete(

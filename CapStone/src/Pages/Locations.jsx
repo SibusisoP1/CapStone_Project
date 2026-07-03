@@ -57,7 +57,9 @@ const Locations = () => {
       ) : error ? (
         <h3>{error}</h3>
       ) : filteredListings.length === 0 ? (
-        <h3>No hotels found{selectedLocation ? ` in ${selectedLocation}` : ""}.</h3>
+        <h3>
+          No hotels found{selectedLocation ? ` in ${selectedLocation}` : ""}.
+        </h3>
       ) : (
         filteredListings.map((listing) => (
           <Link
@@ -65,13 +67,16 @@ const Locations = () => {
             to={`/location/${listing._id}`}
             className="location_link"
           >
-            <Location
-              img={listing.img}
-              location={listing.location}
-              title={listing.name}
-              description={listing.description}
-              price={listing.price}
-            />
+            <div className="loc__detail">
+              <Location
+                img={listing.img}
+                location={listing.location}
+                title={listing.name}
+                bathrooms={listing.bathroom}
+                bedrooms={listing.bedroom}
+                price={listing.price}
+              />
+            </div>
           </Link>
         ))
       )}

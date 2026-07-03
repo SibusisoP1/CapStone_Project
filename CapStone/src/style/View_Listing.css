@@ -56,6 +56,7 @@
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .list_location {
@@ -79,6 +80,7 @@
 .list_description {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 .list_description span {
@@ -86,12 +88,13 @@
   color: #4153f5;
 }
 
-.list_description input {
+.list_description textarea {
   width: 381px;
   height: 118px;
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding: 10px;
 }
 
 .room_detail {
@@ -115,6 +118,7 @@
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .baths {
@@ -133,6 +137,7 @@
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .types {
@@ -145,12 +150,13 @@
   color: #4153f5;
 }
 
-.types input {
+.types select {
   width: 219px;
   height: 55px;
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .room_location {
@@ -169,6 +175,7 @@
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .amneties_container {
@@ -205,6 +212,7 @@
   border-radius: 7px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .amneties button {

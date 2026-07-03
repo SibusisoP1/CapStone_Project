@@ -78,6 +78,7 @@
   height: 400px;
   width: 294.67px;
   border-radius: 8px;
+  text-decoration: none;
 }
 
 .card img {
@@ -90,10 +91,14 @@
 .card h2 {
   background-color: transparent;
   margin: 10px;
+  color: #e5e7eb;
+  text-decoration: none;
 }
 
 .card span {
   margin: 10px;
+  color: #e5e7eb;
+  text-decoration: none;
 }
 
 .card-1 {
@@ -115,6 +120,13 @@
 .todo_cards-section {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+.todo_cards-section h3 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-left: 70px;
+  margin-bottom: 10px;
 }
 
 .todo_cards {
@@ -285,6 +297,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-decoration: none;
 }
 
 .destination .title {
@@ -295,6 +308,7 @@
 
 .destination .location {
   color: #6b7280;
+  text-decoration: none;
 }
 
 .getaways h2 {
@@ -309,7 +323,7 @@
   font-size: 14px;
 }
 
-.destinations .Show_More span {
+.Show_More span {
   text-decoration: underline solid black;
   font-weight: 500;
 }

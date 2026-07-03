@@ -19,17 +19,11 @@ const MainLayout = ({ children }) => (
   </>
 );
 
-const AdminLayout = ({ children }) => (
-  <>
-    {children}
-  </>
-);
+const AdminLayout = ({ children }) => <>{children}</>;
 
-const SimpleLayout = ({ children }) => (
-  <>
-    {children}
-  </>
-);
+// NavOnlyLayout removed — admin routes now use AdminLayout to avoid AirBnb nav
+
+const SimpleLayout = ({ children }) => <>{children}</>;
 
 // Any logged-in user may access; otherwise send to login.
 const RequireAuth = ({ children }) => {
@@ -50,23 +44,94 @@ const Router = () => {
   return (
     <Routes>
       {/* Main routes with navigation */}
-      <Route path="/" element={<MainLayout><Home /></MainLayout>} />
-      <Route path="/locations" element={<MainLayout><Locations /></MainLayout>} />
-      <Route path="/location/:id" element={<MainLayout><Location_detail /></MainLayout>} />
-      
+      <Route
+        path="/"
+        element={
+          <MainLayout>
+            <Home />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/locations"
+        element={
+          <MainLayout>
+            <Locations />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/location/:id"
+        element={
+          <MainLayout>
+            <Location_detail />
+          </MainLayout>
+        }
+      />
+
       {/* Authentication routes */}
-      <Route path="/login" element={<SimpleLayout><Login /></SimpleLayout>} />
-      
+      <Route
+        path="/login"
+        element={
+          <SimpleLayout>
+            <Login />
+          </SimpleLayout>
+        }
+      />
+
       {/* Host-only admin routes */}
-      <Route path="/admin" element={<RequireHost><AdminLayout><Admin_add_Hotel /></AdminLayout></RequireHost>} />
-      <Route path="/admin/view-listing" element={<RequireHost><AdminLayout><Admin_add_Hotel /></AdminLayout></RequireHost>} />
-      <Route path="/admin/create-listing" element={<RequireHost><AdminLayout><View_Listing /></AdminLayout></RequireHost>} />
+      <Route
+        path="/admin"
+        element={
+          <RequireHost>
+            <AdminLayout>
+              <Admin_add_Hotel />
+            </AdminLayout>
+          </RequireHost>
+        }
+      />
+      <Route
+        path="/admin/view-listing"
+        element={
+          <RequireHost>
+            <AdminLayout>
+              <Admin_add_Hotel />
+            </AdminLayout>
+          </RequireHost>
+        }
+      />
+      <Route
+        path="/admin/create-listing"
+        element={
+          <RequireHost>
+            <AdminLayout>
+              <View_Listing />
+            </AdminLayout>
+          </RequireHost>
+        }
+      />
 
       {/* Reservations: any logged-in user (guest sees own, host sees all) */}
-      <Route path="/admin/reservations" element={<RequireAuth><AdminLayout><Reservetion /></AdminLayout></RequireAuth>} />
-      
+      <Route
+        path="/admin/reservations"
+        element={
+          <RequireAuth>
+            <AdminLayout>
+              <Reservetion />
+            </AdminLayout>
+          </RequireAuth>
+        }
+      />
+
       {/* Fallback route */}
-      <Route path="*" element={<MainLayout><Home /></MainLayout>} />
+      <Route
+        path="*"
+        element={
+          <MainLayout>
+            <Home />
+          </MainLayout>
+        }
+      />
     </Routes>
   );
 };

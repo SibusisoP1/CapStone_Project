@@ -30,11 +30,14 @@
 .loc_detail_images {
   display: flex;
   gap: 10px;
+  margin-bottom: 30px;
+  margin-top: 40px;
 }
 
 .big_image span img {
   height: 400px;
   width: 556px;
+  border-radius: 8px;
 }
 
 .small_images {
@@ -51,10 +54,12 @@
 .top_images span img {
   height: 196px;
   width: 274px;
+  border-radius: 8px;
 }
 .bottom_images span img {
   height: 196px;
   width: 274px;
+  border-radius: 8px;
 }
 
 .loc_body_section1 {
@@ -114,6 +119,12 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
+}
+
+.sect1_header_right span img {
+  width: 56px;
+  height: 56px;
+  border-radius: 1000px;
 }
 
 .sect1_right_footer {

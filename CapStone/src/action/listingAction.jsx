@@ -5,6 +5,9 @@ import {
   LISTING_CREATE_REQUEST,
   LISTING_CREATE_SUCCESS,
   LISTING_CREATE_FAIL,
+  LISTING_UPDATE_REQUEST,
+  LISTING_UPDATE_SUCCESS,
+  LISTING_UPDATE_FAIL,
   LISTING_DELETE_REQUEST,
   LISTING_DELETE_SUCCESS,
   LISTING_DELETE_FAIL,
@@ -39,6 +42,20 @@ export const createListing = (formData) => async (dispatch) => {
     dispatch({ type: LISTING_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: LISTING_CREATE_FAIL, payload: getErrorMessage(error) });
+  }
+};
+
+export const updateListing = (id, formData) => async (dispatch) => {
+  try {
+    dispatch({ type: LISTING_UPDATE_REQUEST });
+
+    const { data } = await axiosInstance.put(`/hotel/hotels/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    dispatch({ type: LISTING_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: LISTING_UPDATE_FAIL, payload: getErrorMessage(error) });
   }
 };
 

@@ -76,4 +76,58 @@ export class HotelController {
       next(err);
     }
   }
+
+  static async updateHotel(req: any, res: any, next: any) {
+    const hotel_id = req.params.id;
+    const hotel_data = req.body;
+    const uploadedFile =
+      req.file ||
+      req.files?.img?.[0] ||
+      req.files?.image?.[0] ||
+      req.files?.file?.[0];
+    const imageValue = hotel_data.img || hotel_data.image || hotel_data.file;
+    const path = uploadedFile
+      ? `/src/uploads/${uploadedFile.filename}`
+      : imageValue;
+
+    if (!hotel_id) {
+      req.errorStatus = 400;
+      return next(new Error("Hotel id is required"));
+    }
+
+    try {
+      const updateData: any = {
+        name: hotel_data.name,
+        location: hotel_data.location,
+        description: hotel_data.description,
+        price: parseInt(hotel_data.price),
+        guest: parseInt(hotel_data.guest),
+        bedroom: parseInt(hotel_data.bedroom),
+        bathroom: parseInt(hotel_data.bathroom),
+        type: hotel_data.type,
+        updated_at: new Date(),
+      };
+
+      if (hotel_data.amneties) {
+        updateData.amneties = JSON.parse(hotel_data.amneties);
+      }
+
+      if (path) {
+        updateData.img = path;
+      }
+
+      const hotel = await Hotel.findByIdAndUpdate(hotel_id, updateData, {
+        new: true,
+      });
+
+      if (!hotel) {
+        req.errorStatus = 404;
+        return next(new Error("Hotel not found"));
+      }
+
+      res.json({ message: "Hotel updated", hotel });
+    } catch (err) {
+      next(err);
+    }
+  }
 }

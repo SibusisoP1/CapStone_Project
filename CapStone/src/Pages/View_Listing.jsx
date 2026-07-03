@@ -102,7 +102,7 @@ const View_Listing = () => {
               </div>
               <div className="list_description">
                 <span>Discription</span>
-                <input
+                <textarea
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}

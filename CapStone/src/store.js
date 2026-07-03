@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   listingListReducer,
   listingCreateReducer,
+  listingUpdateReducer,
   listingDeleteReducer,
 } from "./reducers/listingReducers";
 import { userLoginReducer } from "./reducers/userReducer";
@@ -15,6 +16,7 @@ export const store = configureStore({
   reducer: {
     listingList: listingListReducer,
     listingCreate: listingCreateReducer,
+    listingUpdate: listingUpdateReducer,
     listingDelete: listingDeleteReducer,
     userLogin: userLoginReducer,
     reservationList: reservationListReducer,

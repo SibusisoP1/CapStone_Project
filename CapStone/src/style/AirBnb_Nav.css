@@ -7,6 +7,32 @@ nav {
   padding: 10px 30px;
 }
 
+.nav_variant {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav_variant .nav {
+  color: black;
+}
+
+.nav_variant .nav_group span,
+.nav_variant .nav_group a {
+  color: black;
+}
+
+.nav_variant .nav_foot a {
+  color: black;
+}
+
+.nav_variant .nav_foot a:hover {
+  text-decoration: underline;
+}
+
+.nav__container {
+  width: 97%;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -46,6 +72,13 @@ nav {
 
 .nav_foot a:hover {
   text-decoration: underline;
+}
+
+.welcome_text {
+  color: white;
+  font-size: 14px;
+  margin-right: 12px;
+  white-space: nowrap;
 }
 
 .nav_searchbar {

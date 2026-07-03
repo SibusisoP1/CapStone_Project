@@ -45,6 +45,7 @@ import credit_card from "../assets/credit_card.png";
 import spray_paint from "../assets/spray_paint.png";
 import shopping_cart from "../assets/shopping_cart.png";
 import party from "../assets/party.png";
+import starIcon from "../assets/star.png";
 
 const Location_detail = () => {
   const { id } = useParams();
@@ -177,18 +178,18 @@ const Location_detail = () => {
             <div className="small_images">
               <div className="top_images">
                 <span>
-                  <img src="" alt="top1" />
+                  <img src={resolveImageUrl(hotel?.img)} alt="top1" />
                 </span>
                 <span>
-                  <img src="" alt="top2" />
+                  <img src={resolveImageUrl(hotel?.img)} alt="top2" />
                 </span>
               </div>
               <div className="bottom_images">
                 <span>
-                  <img src="" alt="bottom1" />
+                  <img src={resolveImageUrl(hotel?.img)} alt="bottom1" />
                 </span>
                 <span>
-                  <img src="" alt="bottom2" />
+                  <img src={resolveImageUrl(hotel?.img)} alt="bottom2" />
                 </span>
               </div>
             </div>
@@ -207,7 +208,7 @@ const Location_detail = () => {
                 </div>
                 <div className="sect1_header_right">
                   <span>
-                    <img src="" alt="profile" />
+                    <img src={Ghazel} alt="profile" />
                   </span>
                 </div>
               </div>
@@ -269,7 +270,7 @@ const Location_detail = () => {
                   <span className="p">${hotel ? hotel.price : 75}/ night</span>
                   <div className="price_header_right">
                     <span>
-                      <img src="" alt="star" />
+                      <img src={starIcon} alt="star" />
                     </span>
                     <span>5.0</span>
                     <span>7 reviews</span>
