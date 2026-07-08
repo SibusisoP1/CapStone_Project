@@ -41,6 +41,7 @@ const express_1 = __importDefault(require("express"));
 const mongoose = __importStar(require("mongoose"));
 const bodyParser = __importStar(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
+const path = __importStar(require("path"));
 const enviroment_1 = require("./enviroments/enviroment");
 const UserRouter_1 = __importDefault(require("./routers/UserRouter"));
 const HotelRouter_1 = __importDefault(require("./routers/HotelRouter"));
@@ -71,7 +72,8 @@ class Server {
         });
     }
     setRoutes() {
-        this.app.use("/src/uploads", express_1.default.static("src/uploads"));
+        const uploadDirectory = path.resolve(process.cwd(), "src", "uploads");
+        this.app.use("/src/uploads", express_1.default.static(uploadDirectory));
         this.app.use("/api/user", UserRouter_1.default);
         this.app.use("/api/hotel", HotelRouter_1.default);
         this.app.use("/api/reservation", ReservationRouter_1.default);

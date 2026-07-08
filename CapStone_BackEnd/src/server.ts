@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 import cors from "cors";
+import * as path from "path";
 import { getEnviromentVariables } from "./enviroments/enviroment";
 import UserRouter from "./routers/UserRouter";
 import HotelRouter from "./routers/HotelRouter";
@@ -39,7 +40,7 @@ export class Server {
   }
 
   setRoutes() {
-    const uploadDirectory = path.resolve(__dirname, "uploads");
+    const uploadDirectory = path.resolve(process.cwd(), "src", "uploads");
     this.app.use("/src/uploads", express.static(uploadDirectory));
     this.app.use("/api/user", UserRouter);
     this.app.use("/api/hotel", HotelRouter);

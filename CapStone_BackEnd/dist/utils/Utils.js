@@ -42,7 +42,7 @@ const jwt = __importStar(require("jsonwebtoken"));
 const multer_1 = __importDefault(require("multer"));
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
-const uploadDirectory = path.resolve(__dirname, "..", "uploads");
+const uploadDirectory = path.resolve(process.cwd(), "src", "uploads");
 fs.mkdirSync(uploadDirectory, { recursive: true });
 const destinationOptions = multer_1.default.diskStorage({
     destination: (req, file, cb) => {

@@ -4,7 +4,7 @@ import Multer from "multer";
 import * as fs from "fs";
 import * as path from "path";
 
-const uploadDirectory = path.resolve(__dirname, "..", "uploads");
+const uploadDirectory = path.resolve(process.cwd(), "src", "uploads");
 fs.mkdirSync(uploadDirectory, { recursive: true });
 
 const destinationOptions = Multer.diskStorage({
