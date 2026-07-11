@@ -57,6 +57,22 @@ const Location_detail = () => {
   const [guests, setGuests] = useState(1);
   const [hotel, setHotel] = useState(null);
 
+  const basePrice = hotel ? hotel.price : 75;
+
+  const calculateNights = () => {
+    if (!checkIn || !checkOut) return 0;
+    const diffTime = checkOut.getTime() - checkIn.getTime();
+    return Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+  };
+
+  const nights = calculateNights();
+  const rawRoomTotal = basePrice * nights;
+  const discount = nights >= 7 ? Math.round(rawRoomTotal * 0.1) : 0;
+  const cleaningFee = nights > 0 ? 50 : 0;
+  const serviceFee = Math.round(rawRoomTotal * 0.12);
+  const tax = Math.round(rawRoomTotal * 0.08);
+  const totalPriceVal = rawRoomTotal - discount + cleaningFee + serviceFee + tax;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -326,32 +342,42 @@ const Location_detail = () => {
                     <span>You wount be charged yet</span>
                   )}
                 </div>
-                <div className="price_detail">
-                  <div className="p_row1">
-                    <span>$79 x 7 nights</span>
-                    <span>$555</span>
+                {nights > 0 ? (
+                  <>
+                    <div className="price_detail">
+                      <div className="p_row1">
+                        <span>${basePrice} x {nights} {nights === 1 ? "night" : "nights"}</span>
+                        <span>${rawRoomTotal}</span>
+                      </div>
+                      {discount > 0 && (
+                        <div className="p_row1">
+                          <span>Weekly discount</span>
+                          <span className="discount">-${discount}</span>
+                        </div>
+                      )}
+                      <div className="p_row1">
+                        <span>Cleaning fee</span>
+                        <span>${cleaningFee}</span>
+                      </div>
+                      <div className="p_row1">
+                        <span>Service fee</span>
+                        <span>${serviceFee}</span>
+                      </div>
+                      <div className="p_row1">
+                        <span>Occupancy taxes and fees</span>
+                        <span>${tax}</span>
+                      </div>
+                    </div>
+                    <div className="total_price">
+                      <span>Total</span>
+                      <span>${totalPriceVal}</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="price_placeholder">
+                    <span>Select check-in and check-out dates to calculate price</span>
                   </div>
-                  <div className="p_row1">
-                    <span>Weekly discount</span>
-                    <span className="discount">-$28</span>
-                  </div>
-                  <div className="p_row1">
-                    <span>Cleaning fee</span>
-                    <span>$62</span>
-                  </div>
-                  <div className="p_row1">
-                    <span>Service fee</span>
-                    <span>$83</span>
-                  </div>
-                  <div className="p_row1">
-                    <span>Occupancy taxes and fees</span>
-                    <span>$29</span>
-                  </div>
-                </div>
-                <div className="total_price">
-                  <span>Total</span>
-                  <span>$701</span>
-                </div>
+                )}
               </div>
               <div className="sect1_right_footer">
                 <span>
@@ -449,7 +475,7 @@ const Location_detail = () => {
           </div>
           <div className="loc_body_section4">
             <div className="sect4_tittles">
-              <h1>7 nights in New York</h1>
+              <h1>{nights > 0 ? `${nights} nights` : "Select dates"} in {hotel ? hotel.location : "Getaway"}</h1>
               <span>
                 <span>
                   {checkIn ? checkIn.toLocaleDateString() : "Select Check-in"}

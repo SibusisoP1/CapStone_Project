@@ -105,4 +105,57 @@ export class ReservationController {
       next(err);
     }
   }
+
+  static async updateReservation(req: any, res: any, next: any) {
+    const reservation_id = req.params.id;
+    const data = req.body;
+    const user_id =
+      req.user?.user_id ||
+      req.decoded?.user_id ||
+      req.user?._id ||
+      req.decoded?._id;
+
+    if (!reservation_id) {
+      req.errorStatus = 400;
+      return next(new Error("Reservation id is required"));
+    }
+
+    try {
+      const reservation = await Reservation.findById(reservation_id);
+
+      if (!reservation) {
+        req.errorStatus = 404;
+        return next(new Error("Reservation not found"));
+      }
+
+      const isOwner =
+        user_id && reservation.user_id?.toString() === user_id.toString();
+      const isHost = req.user?.role === "host" || req.decoded?.role === "host";
+
+      if (!isOwner && !isHost) {
+        req.errorStatus = 401;
+        return next(new Error("Unauthorized access"));
+      }
+
+      reservation.checkin = new Date(data.checkin);
+      reservation.checkout = new Date(data.checkout);
+
+      const updatedDoc: any = await reservation.save();
+      await updatedDoc.populate("hotel_id", "name");
+
+      const response_reservation = {
+        reservation_id: updatedDoc._id,
+        user_id: updatedDoc.user_id,
+        username: updatedDoc.username,
+        hotel_id: updatedDoc.hotel_id?._id || updatedDoc.hotel_id,
+        hotel_name: updatedDoc.hotel_id?.name || null,
+        checkin: updatedDoc.checkin,
+        checkout: updatedDoc.checkout,
+      };
+
+      res.json({ message: "Reservation updated", reservation: response_reservation });
+    } catch (err) {
+      next(err);
+    }
+  }
 }

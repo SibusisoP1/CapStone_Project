@@ -8,6 +8,10 @@ import {
   RESERVATION_DELETE_REQUEST,
   RESERVATION_DELETE_SUCCESS,
   RESERVATION_DELETE_FAIL,
+  RESERVATION_UPDATE_REQUEST,
+  RESERVATION_UPDATE_SUCCESS,
+  RESERVATION_UPDATE_FAIL,
+  RESERVATION_UPDATE_RESET,
 } from "../types/reservationTypes";
 import axiosInstance from "../api/axiosInstance";
 
@@ -65,6 +69,24 @@ export const deleteReservation = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: RESERVATION_DELETE_FAIL,
+      payload: getErrorMessage(error),
+    });
+  }
+};
+
+export const updateReservation = (id, checkin, checkout) => async (dispatch) => {
+  try {
+    dispatch({ type: RESERVATION_UPDATE_REQUEST });
+
+    const { data } = await axiosInstance.patch(`/reservation/reservations/${id}`, {
+      checkin,
+      checkout,
+    });
+
+    dispatch({ type: RESERVATION_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: RESERVATION_UPDATE_FAIL,
       payload: getErrorMessage(error),
     });
   }

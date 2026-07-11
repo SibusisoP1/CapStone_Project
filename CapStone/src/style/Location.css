@@ -30,7 +30,8 @@
 }
 
 .loc_header {
-  width: 932px;
+  width: 100%;
+  max-width: 932px;
   display: flex;
   justify-content: space-between;
 }
@@ -57,7 +58,8 @@
 }
 
 .loc_footer {
-  width: 932px;
+  width: 100%;
+  max-width: 932px;
   display: flex;
   justify-content: space-between;
 }
@@ -79,4 +81,27 @@
 .footer_right .price {
   font-size: 18px;
   color: black;
+}
+
+@media (max-width: 768px) {
+  .location_container {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+    margin-left: 0;
+  }
+  .location_image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+  .loc__detail {
+    margin: 15px;
+  }
+  .loc_header,
+  .loc_footer {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }

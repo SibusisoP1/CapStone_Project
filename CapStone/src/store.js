@@ -10,6 +10,7 @@ import {
   reservationListReducer,
   reservationCreateReducer,
   reservationDeleteReducer,
+  reservationUpdateReducer,
 } from "./reducers/reservationReducers";
 
 export const store = configureStore({
@@ -22,5 +23,6 @@ export const store = configureStore({
     reservationList: reservationListReducer,
     reservationCreate: reservationCreateReducer,
     reservationDelete: reservationDeleteReducer,
+    reservationUpdate: reservationUpdateReducer,
   },
 });

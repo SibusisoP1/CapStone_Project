@@ -327,3 +327,67 @@
   text-decoration: underline solid black;
   font-weight: 500;
 }
+
+@media (max-width: 1024px) {
+  .cards_section h3,
+  .todo_cards-section h3,
+  .getaways h2 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .cards,
+  .todo_cards,
+  .gift_card_section,
+  .hosting_section,
+  .getaways {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .cards,
+  .todo_cards {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .todo_card img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .gift_card {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 18px;
+  }
+  .cards_section h3,
+  .todo_cards-section h3,
+  .gift_card_header h3,
+  .hosting_content h1 {
+    font-size: 24px;
+    line-height: normal;
+  }
+  .hosting_content h1 {
+    font-size: 32px;
+  }
+  .gift_card_section {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .getaways_content {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .getaways {
+    height: auto;
+  }
+}

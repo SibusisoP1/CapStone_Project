@@ -21,7 +21,9 @@ class ReservationRouter {
     postRoutes() {
         this.router.post("/create", GlobalMiddleWare_1.GlobalMiddleWare.auth, ReservationValidator_1.ReservationValidators.reserve(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, ReservationController_1.ReservationController.reserve);
     }
-    patchRoutes() { }
+    patchRoutes() {
+        this.router.patch("/reservations/:id", GlobalMiddleWare_1.GlobalMiddleWare.auth, ReservationValidator_1.ReservationValidators.updateReservation(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, ReservationController_1.ReservationController.updateReservation);
+    }
     putRoutes() { }
     deleteRoutes() {
         this.router.delete("/reservations/:id", GlobalMiddleWare_1.GlobalMiddleWare.auth, ReservationController_1.ReservationController.deleteReservation);

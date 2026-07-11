@@ -43,5 +43,24 @@ class ReservationValidators {
             }),
         ];
     }
+    static updateReservation() {
+        return [
+            (0, express_validator_1.body)("checkin", "Check-in date is required")
+                .notEmpty()
+                .isISO8601()
+                .withMessage("Check-in date must be a valid date"),
+            (0, express_validator_1.body)("checkout", "Check-out date is required")
+                .notEmpty()
+                .isISO8601()
+                .withMessage("Check-out date must be a valid date")
+                .custom((checkout, { req }) => {
+                const checkin = req.body.checkin;
+                if (checkin && new Date(checkout) <= new Date(checkin)) {
+                    throw new Error("Check-out date must be after check-in date");
+                }
+                return true;
+            }),
+        ];
+    }
 }
 exports.ReservationValidators = ReservationValidators;

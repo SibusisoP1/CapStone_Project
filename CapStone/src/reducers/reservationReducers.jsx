@@ -9,6 +9,10 @@ import {
   RESERVATION_DELETE_REQUEST,
   RESERVATION_DELETE_SUCCESS,
   RESERVATION_DELETE_FAIL,
+  RESERVATION_UPDATE_REQUEST,
+  RESERVATION_UPDATE_SUCCESS,
+  RESERVATION_UPDATE_FAIL,
+  RESERVATION_UPDATE_RESET,
 } from "../types/reservationTypes";
 
 export const reservationListReducer = (
@@ -50,6 +54,21 @@ export const reservationDeleteReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case RESERVATION_DELETE_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const reservationUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case RESERVATION_UPDATE_REQUEST:
+      return { loading: true };
+    case RESERVATION_UPDATE_SUCCESS:
+      return { loading: false, success: true, reservation: action.payload };
+    case RESERVATION_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    case RESERVATION_UPDATE_RESET:
+      return {};
     default:
       return state;
   }

@@ -41,7 +41,15 @@ class ReservationRouter {
     );
   }
 
-  patchRoutes() {}
+  patchRoutes() {
+    this.router.patch(
+      "/reservations/:id",
+      GlobalMiddleWare.auth,
+      ReservationValidators.updateReservation(),
+      GlobalMiddleWare.checkError,
+      ReservationController.updateReservation,
+    );
+  }
 
   putRoutes() {}
 

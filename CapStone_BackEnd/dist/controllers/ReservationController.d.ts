@@ -3,4 +3,5 @@ export declare class ReservationController {
     static getReservations(req: any, res: any, next: any): Promise<void>;
     static getAllReservations(req: any, res: any, next: any): Promise<void>;
     static deleteReservation(req: any, res: any, next: any): Promise<any>;
+    static updateReservation(req: any, res: any, next: any): Promise<any>;
 }

@@ -670,3 +670,130 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+.price_placeholder {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  border: 1px dashed #d1d5db;
+  padding: 20px 15px;
+  border-radius: 8px;
+  background-color: #f9fafb;
+}
+
+@media (max-width: 1024px) {
+  .Location_detail {
+    padding: 30px;
+  }
+  .loc_detail_images {
+    flex-direction: column;
+  }
+  .big_image span img {
+    width: 100%;
+    height: auto;
+  }
+  .small_images {
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .small_images .top_images,
+  .small_images .bottom_images {
+    flex: 1 1 calc(50% - 5px);
+    width: 100%;
+    gap: 10px;
+  }
+  .top_images span img,
+  .bottom_images span img {
+    width: 100%;
+    height: auto;
+  }
+  .loc_body_section1 {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .section1_left {
+    width: 100%;
+  }
+  .section1_right {
+    width: 100%;
+  }
+  .sect1_price_container {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    gap: 20px;
+  }
+  .check_sect {
+    height: auto;
+  }
+  .check_sect .check {
+    flex-direction: column;
+  }
+  .check_sect .check .checkin,
+  .check_sect .check .checkout {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid gray;
+  }
+  .btn_reserve button {
+    width: 100%;
+  }
+  .loc_body_section2,
+  .loc_body_section3,
+  .sect3_details,
+  .loc_body_section4 {
+    width: 100%;
+  }
+  .sect3_details {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sect5_body {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sect5_body_left {
+    width: 100%;
+  }
+  .sect5_footer {
+    flex-direction: column;
+    height: auto;
+    gap: 40px;
+  }
+  .sect5_footer_left {
+    width: 100%;
+    gap: 30px;
+  }
+  .sect6_body_body {
+    width: 100%;
+  }
+  .sect7_body {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .sect7_body_left {
+    width: 100%;
+  }
+  .sect8_body {
+    flex-direction: column;
+    gap: 20px;
+    margin-right: 0;
+  }
+  .sect8_footer {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Location_detail {
+    padding: 15px;
+  }
+  .sect1_header {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
